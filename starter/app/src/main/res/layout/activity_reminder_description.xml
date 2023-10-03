@@ -10,24 +10,122 @@
             type="com.udacity.project4.locationreminders.reminderslist.ReminderDataItem" />
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="20dp"
         tools:context=".locationreminders.ReminderDescriptionActivity">
 
-        <!-- TODO: Add the design of the reminder details -->
-
         <TextView
-            android:layout_width="match_parent"
+            android:id="@+id/tv1"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Reminder Details"
-            android:textSize="@dimen/text_size_large"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:text="Title :"
+            android:textColor="@color/black"
+            android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-    </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="@{reminderDataItem.title}"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv1"
+            app:layout_constraintStart_toEndOf="@+id/tv1"
+            app:layout_constraintTop_toTopOf="@+id/tv1"
+            tools:text="Title" />
+
+        <TextView
+            android:id="@+id/tv2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Description :"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@+id/tv1"
+            app:layout_constraintTop_toBottomOf="@+id/tv1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="@{reminderDataItem.description}"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv2"
+            app:layout_constraintStart_toEndOf="@+id/tv2"
+            app:layout_constraintTop_toTopOf="@+id/tv2"
+            tools:text="Description" />
+
+        <TextView
+            android:id="@+id/tv3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Location :"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@+id/tv2"
+            app:layout_constraintTop_toBottomOf="@+id/tv2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="@{reminderDataItem.location}"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv3"
+            app:layout_constraintStart_toEndOf="@+id/tv3"
+            app:layout_constraintTop_toTopOf="@+id/tv3"
+            tools:text="Location" />
+
+        <TextView
+            android:id="@+id/tv4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Latitude :"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@+id/tv3"
+            app:layout_constraintTop_toBottomOf="@+id/tv3" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="@{reminderDataItem.latitude.toString()}"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv4"
+            app:layout_constraintStart_toEndOf="@+id/tv4"
+            app:layout_constraintTop_toTopOf="@+id/tv4"
+            tools:text="latitude" />
+
+        <TextView
+            android:id="@+id/tv5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Longitude :"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@+id/tv4"
+            app:layout_constraintTop_toBottomOf="@+id/tv4" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="@{reminderDataItem.longitude.toString()}"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv5"
+            app:layout_constraintStart_toEndOf="@+id/tv5"
+            app:layout_constraintTop_toTopOf="@+id/tv5"
+            tools:text="longitude" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

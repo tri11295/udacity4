@@ -14,12 +14,12 @@ import kotlinx.coroutines.launch
 
 class SaveReminderViewModel(val app: Application, val dataSource: ReminderDataSource) :
     BaseViewModel(app) {
-    val reminderTitle = MutableLiveData<String>()
-    val reminderDescription = MutableLiveData<String>()
-    val reminderSelectedLocationStr = MutableLiveData<String>()
-    val selectedPOI = MutableLiveData<PointOfInterest>()
-    val latitude = MutableLiveData<Double>()
-    val longitude = MutableLiveData<Double>()
+    val reminderTitle = MutableLiveData<String?>()
+    val reminderDescription = MutableLiveData<String?>()
+    val reminderSelectedLocationStr = MutableLiveData<String?>()
+    val selectedPOI = MutableLiveData<PointOfInterest?>()
+    val latitude = MutableLiveData<Double?>()
+    val longitude = MutableLiveData<Double?>()
 
     /**
      * Clear the live data objects to start fresh next time the view model gets called
@@ -36,30 +36,24 @@ class SaveReminderViewModel(val app: Application, val dataSource: ReminderDataSo
     /**
      * Validate the entered data then saves the reminder data to the DataSource
      */
-    fun validateAndSaveReminder(reminderData: ReminderDataItem) {
+    fun validateAndSaveReminder(reminderData: ReminderDataItem, onSaveSuccess: () -> Unit) {
         if (validateEnteredData(reminderData)) {
-            saveReminder(reminderData)
+            saveReminder(reminderData, onSaveSuccess)
         }
     }
 
     /**
      * Save the reminder to the data source
      */
-    private fun saveReminder(reminderData: ReminderDataItem) {
+    private fun saveReminder(reminderData: ReminderDataItem, onSaveSuccess: () -> Unit) {
         showLoading.value = true
         viewModelScope.launch {
             dataSource.saveReminder(
-                ReminderDTO(
-                    reminderData.title,
-                    reminderData.description,
-                    reminderData.location,
-                    reminderData.latitude,
-                    reminderData.longitude,
-                    reminderData.id
-                )
+                reminderData.toReminderDTOModel()
             )
             showLoading.value = false
-            showToast.value = app.getString(R.string.reminder_saved)
+//            showToast.value = app.getString(R.string.reminder_saved)
+            onSaveSuccess.invoke()
             navigationCommand.value = NavigationCommand.Back
         }
     }
